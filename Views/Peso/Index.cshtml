@@ -1,0 +1,91 @@
+﻿@model EjerciciosRazorPages.Models.Peso
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Calcular IMC</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="peso" class="control-label"></label>
+                <input asp-for="peso" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="altura" class="control-label"></label>
+                <input asp-for="altura" class="form-control" />
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Calcular" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model != null && Model.altura > 0)
+{
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            @if (Model != null && Model.IMC < 18)
+            {
+                <div class="alert alert-warning">
+                    <strong>IMC:</strong> @Model.IMC
+                    <p>Peso bajo</p>
+                </div>
+                <div>
+                    <img src="https://media.lmneuquen.com/p/ac6d5ef4aadd2e8b2a35837c6d6abc5a/adjuntos/195/imagenes/003/123/0003123682/p23-f1-cyvsce_id217694jpg.jpg" width="300" height="200" />
+                </div>
+            }
+            else if (Model != null && Model.IMC >= 18 && Model.IMC < 25)
+            {
+                <div class="alert alert-success">
+                    <strong>IMC:</strong> @Model.IMC
+                    <p>Peso normal</p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsZd3BDA_oBKLKhajIYd-J_veSkARbNtgWKs40PRxyoA&s" width="300" height="200" />
+                </div>
+            }
+            else if (Model != null && Model.IMC >= 25 && Model.IMC < 27)
+            {
+                <div class="alert alert-danger">
+                    <strong>IMC:</strong> @Model.IMC
+                    <p>Sobre peso</p>
+                    <img src="https://www.noticiasensalud.com/wp-content/uploads/2019/07/obesidad-y-sobrepeso.jpg" width="300" height="200" />
+                </div>
+            }
+            else if (Model != null && Model.IMC >= 27 && Model.IMC < 30)
+            {
+                <div class="alert alert-danger">
+                    <strong>IMC:</strong> @Model.IMC
+                    <p>Obesidad grado 1</p>
+                    <img src="https://manmedicalinstitute.com/wp-content/uploads/2021/06/obesidad-tipo-1-768x540.jpg" width="300" height="200" />
+                </div>
+            }
+            else if (Model != null && Model.IMC >= 30 && Model.IMC < 40)
+            {
+                <div class="alert alert-danger">
+                    <strong>IMC:</strong> @Model.IMC
+                    <p>Obesidad grado 2</p>
+                    <img src="https://cdn.biomes.world/wp-content/uploads/2019/09/Adipositas_Grade-1440x960.jpg" width="300" height="200" />
+                </div>
+            }
+            else{
+                <div class="alert alert-danger">
+                    <strong>IMC:</strong> @Model.IMC
+                    <p>Obesidad grado 3</p>
+                    <img src="https://cirugiadeadelgazamiento.com/wp-content/uploads/2023/05/obesidad-morbida-scaled.jpg" width="300" height="200" />
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

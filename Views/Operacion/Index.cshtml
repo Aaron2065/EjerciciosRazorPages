@@ -1,0 +1,43 @@
+﻿@model EjerciciosRazorPages.Models.Operacion
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Operacion</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label for="A">A:</label>
+                <input type="number" step="any" class="form-control" id="A" name="A" value="@Model.A" required />
+            </div>
+            <div class="form-group">
+                <label for="B">B:</label>
+                <input type="number" step="any" class="form-control" id="B" name="B" value="@Model.B" required />
+            </div>
+            <div class="form-group">
+                <label for="X">X:</label>
+                <input type="number" step="any" class="form-control" id="X" name="X" value="@Model.X" required />
+            </div>
+            <div class="form-group">
+                <label for="Y">Y:</label>
+                <input type="number" step="any" class="form-control" id="Y" name="Y" value="@Model.Y" required />
+            </div>
+            <div class="form-group">
+                <label for="N">N:</label>
+                <input type="number" class="form-control" id="N" name="N" value="@Model.N" required />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Calculate</button>
+        </form>
+    </div>
+</div>
+
+@if (Model != null && Model.Resultado != 0)
+{
+    <div class="alert alert-info mt-4">
+        <strong>Resultado:</strong> @Model.Resultado
+    </div>
+}

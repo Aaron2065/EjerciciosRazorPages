@@ -1,0 +1,32 @@
+﻿@model EjerciciosRazorPages.Models.Encriptar
+
+@{
+    ViewData["Title"] = "Caesar Cipher";
+}
+
+<h4>Encriptar y Desencriptar</h4>
+<hr />
+<form method="post">
+    <div>
+        <label for="Input" class="control-label">Mensaje</label>
+        <input type="text" clas="form-control" id="Input" name="Input" value="@Model?.Input" required />
+    </div>
+    <br />
+    <div>
+        <label for="Shift" class="control-label">Posiciones</label>
+        <input type="number" id="Shift" name="Shift" value="@Model?.Shift" required />
+    </div>
+    <br />
+    <div>
+        <button class="btn btn-primary" type="submit" name="action" value="Encriptar">Encriptar</button>
+        <button class="btn btn-success" type="submit" name="action" value="Desencriptar">Desencriptar</button>
+    </div>
+</form>
+
+@if (!string.IsNullOrEmpty(Model?.Output))
+{
+    <div>
+        <label>Salida de mensaje:</label>
+        <p>@Model.Output</p>
+    </div>
+}
